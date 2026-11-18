@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f5ec">
+  <meta name="description" content="Một chút động lực, một người bạn đồng hành. Đếm ngược đến giờ tan làm cùng Pepe, capybara và mèo cam.">
+  <title>paid to wait — Chờ giờ về, có hội.</title>
+  <link rel="icon" href="./assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/style.css">
+  <script src="./assets/reactions.js" defer></script>
+  <script src="./assets/work-scenes.js" defer></script>
+  <script src="./assets/main.js" defer></script>
+</head>
+<body>
+  <header class="topbar wrap">
+    <a class="brand" href="./" aria-label="paid to wait — Trang đầu"><span class="brand-mark" aria-hidden="true">p<span>•</span></span>paid to wait<span class="brand-dot">®</span></a>
+    <div id="attendance-badge" class="attendance-badge" hidden role="status"></div>
+    <div class="header-right"><span class="local-date" id="local-date"></span><span class="live-dot"></span><span>Đang chờ cùng bạn</span></div>
+  </header>
+  <main class="wrap">
+    <div class="intro"><div><p class="eyebrow"><span>●</span> MỘT CHIẾC ĐỒNG HỒ CHO DÂN VĂN PHÒNG</p><h1>Chăm chỉ làm việc.<br><span>Chăm hơn khi chờ về.</span><svg viewBox="0 0 100 70" aria-hidden="true"><path d="M8 52Q45 2 85 28M66 8l21 20-27 12"/></svg></h1><p class="intro-copy">Ca làm có thể dài. Có đồng bọn thì đỡ hơn một chút.</p></div><div class="little-note">Lương vẫn chạy.<br>Mình cứ từ từ. <span>☺</span></div></div>
+    <div id="demo-banner" class="demo-banner" hidden><span><strong>ĐANG XEM DEMO</strong> <span id="demo-time">08:45</span> · Một ngày trong 20 giây</span><button id="exit-demo" type="button">Thoát demo ↗</button><div id="demo-progress"></div></div>
+    <div class="workspace">
+      <section class="scene-card" aria-label="Góc làm việc của nhân vật">
+        <div class="scene-top"><span class="room-label"><i></i> PHÒNG CHỜ TAN LÀM</span><div class="weather-control"><label for="city" class="sr-only">Thành phố xem thời tiết</label><select id="city"><option value="hcm">TP. Hồ Chí Minh</option><option value="hanoi">Hà Nội</option><option value="danang">Đà Nẵng</option><option value="dalat">Đà Lạt</option><option value="cantho">Cần Thơ</option></select><span id="weather" title="Thời tiết mặc định">☀ Nắng nhẹ</span></div></div>
+        <div id="scene" class="scene" data-phase="morning" data-weather="sunny" role="img" aria-label="Pepe ngồi làm việc trong văn phòng"></div>
+        <div class="scene-bottom"><span id="scene-caption">Một ngón tay làm việc. Cả tâm hồn chờ về.</span><span class="scene-sticker" id="scene-sticker">cà phê trước, deadline sau.</span></div>
+      </section>
+      <aside class="control-card">
+        <div id="setup-panel">
+          <p class="eyebrow">THIẾT LẬP CA HÔM NAY</p><h2>Vào ca thôi <span aria-hidden="true">↗</span></h2><p class="muted">Chọn giờ vào. Để tụi mình đếm giờ ra.</p>
+          <form id="setup-form">
+            <div class="time-labels"><label for="checkin">Giờ check-in</label><span>Giờ tan làm</span></div>
+            <div class="time-pair"><input id="checkin" type="time" step="60" value="08:45" required><span aria-hidden="true">→</span><output id="checkout" for="checkin">18:15</output></div>
+            <p class="field-note" id="time-note">Chọn giờ bất kỳ · Giờ về trong khoảng 17:30 – 18:30</p>
+            <fieldset><legend>Chọn đồng bọn</legend><div class="character-options">
+              <label class="character-option"><input type="radio" name="character" value="pepe" checked><span class="portrait" data-character="pepe"></span><span>Pepe</span></label>
+              <label class="character-option"><input type="radio" name="character" value="capybara"><span class="portrait" data-character="capybara"></span><span>Capybara</span></label>
+              <label class="character-option"><input type="radio" name="character" value="cat"><span class="portrait" data-character="cat"></span><span>Mèo cam</span></label>
+            </div></fieldset>
+            <button class="primary" type="submit"><span id="start-label">Bắt đầu ca</span><span aria-hidden="true">→</span></button>
+          </form>
+          <button class="demo-button" type="button" id="start-demo"><span aria-hidden="true">▷</span> Xem một ngày trong 20 giây</button>
+          <p class="privacy-note"><span aria-hidden="true">⌁</span> Lưu trên máy bạn. Không cần đăng nhập.</p>
+        </div>
+        <div id="active-panel" hidden>
+          <p class="eyebrow" id="status-label">ĐANG TRONG CA</p><div class="timer-heading"><h2 id="timer-title">Còn chút nữa thôi.</h2><svg id="off-duty-skull" hidden viewBox="0 0 64 64" role="img" aria-label="Đầu lâu và hai khúc xương chéo"><g fill="#eee8d7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 44l40 12m-40 0l40-12" stroke-width="7"/><path d="M17 25a15 15 0 1 1 30 0q0 11-8 14v6H25v-6q-8-3-8-14Z"/><path d="M30 38v7m5-7v7"/><ellipse cx="25" cy="26" rx="4" ry="5" fill="currentColor"/><ellipse cx="39" cy="26" rx="4" ry="5" fill="currentColor"/><path d="M32 32l-3 4h6Z" fill="currentColor"/></g></svg></div><p class="muted" id="timer-subtitle">Đếm ngược tới chiếc cửa tự do.</p>
+          <div id="off-duty-actions" class="off-duty-actions" hidden><button id="send-message" type="button">E rảnh ko? <span aria-hidden="true">↗</span></button><button id="close-reaction" type="button" hidden>Đóng cảnh <span aria-hidden="true">×</span></button></div>
+          <div id="countdown" class="countdown" role="timer" aria-label="Thời gian còn lại">00:00:00</div><div class="timer-units" aria-hidden="true"><span>GIỜ</span><span>PHÚT</span><span>GIÂY</span></div>
+          <div class="shift-line"><span id="shift-start">08:45 vào ca</span><span id="shift-end">18:15 về nhà</span></div><div class="progress-track" role="progressbar" aria-label="Tiến độ ca" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="shift-progress"><div id="shift-fill"></div></div><p class="progress-copy"><span id="progress-percent">0% đã đi qua</span><span>cố lên một xíu!</span></p>
+          <div class="next-box"><span aria-hidden="true">◷</span><div><small>MỐC TIẾP THEO</small><strong id="next-milestone">12:00 · Nạp năng lượng</strong></div></div>
+          <button class="edit-button" id="edit-settings" type="button">Đổi giờ / đồng bọn <span aria-hidden="true">↗</span></button>
+          <button class="demo-button compact" type="button" id="active-demo">▷ Xem một ngày trong 20 giây</button>
+        </div>
+      </aside>
+    </div>
+    <section id="work-actions" class="work-actions" aria-label="Hoạt cảnh trong giờ làm" hidden>
+      <button type="button" data-work-scene="jira">Án tử Jira <span aria-hidden="true">♨</span></button>
+      <button type="button" data-work-scene="tea">Tiên dược tăng đường huyết <svg class="milk-tea-icon" width="18" height="20" viewBox="0 0 40 48" aria-hidden="true"><g fill="none" stroke="#8c7955" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 15h26l-4 29H12Z" fill="#d8b486"/><path d="M7 14h28M22 14l5-11h7"/><g fill="#746044" stroke="none"><circle cx="17" cy="35" r="2.5"/><circle cx="25" cy="38" r="2.5"/><circle cx="23" cy="30" r="2.5"/><circle cx="16" cy="42" r="2"/></g></g></svg></button>
+      <button type="button" data-work-scene="meeting">Hội nghị thượng đỉnh <span aria-hidden="true">☏</span></button>
+      <button type="button" data-work-scene="bathroom">Giải phóng bộ nhớ đệm <span aria-hidden="true">♧</span></button>
+      <button type="button" id="close-work-scene" hidden>Về bàn làm việc ×</button>
+    </section>
+    <section class="day-strip" aria-labelledby="day-title"><div class="day-heading"><span id="day-title">LỊCH TRÌNH SINH TỒN</span><span>mỗi mốc, một tâm trạng</span></div><div class="milestones"><div data-milestone="morning"><span class="milestone-icon">⌨</span><div><small id="rail-start">08:45</small><strong>Bật chế độ làm</strong></div></div><div data-milestone="lunch"><span class="milestone-icon">♨</span><div><small>12:00</small><strong>Hồi máu</strong></div></div><div data-milestone="dread"><span class="milestone-icon">◷</span><div><small>13:00</small><strong>Hơi rén rồi</strong></div></div><div data-milestone="afternoon"><span class="milestone-icon">▤</span><div><small>13:30</small><strong>Cày nốt thôi</strong></div></div><div data-milestone="helmet"><span class="milestone-icon">✧</span><div><small id="rail-helmet">18:10</small><strong>Sẵn sàng phóng</strong></div></div><div data-milestone="done"><span class="milestone-icon">↗</span><div><small id="rail-end">18:15</small><strong>Tự do rồi!</strong></div></div></div></section>
+    <div class="bottom-note"><span>✳ Bạn không lười. Bạn đang tiết kiệm năng lượng cho cuộc sống.</span><span>Được trả lương để chờ. Một cách có trách nhiệm.</span></div>
+  </main>
+  <footer class="wrap"><span>paid to wait <span class="footer-flower">✳</span> made for the little breaks.</span><span>Vibe coded for ArtX · <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Thời tiết: Open-Meteo</a><span id="weather-note"> · nền mặc định</span></span></footer>
+  <div class="sr-only" role="status" id="announcer" aria-live="polite"></div>
+</body>
+</html>

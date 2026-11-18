@@ -1,0 +1,13 @@
+# Local QA workspace: browser tools, screenshots, reports and extracted app copies
+/.qa/
+# Dependencies and generated archives
+node_modules/
+/*.zip
+# Logs and Python cache
+*.log
+__pycache__/
+*.py[cod]
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
