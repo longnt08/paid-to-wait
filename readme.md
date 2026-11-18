@@ -16,4 +16,4 @@ Chạy trong thư mục chứa `index.html`:
 python -m http.server 8000
 ```
 
-Mở `http://localhost:8000/`. Để kiểm tra dưới thư mục con, đặt các file vào `paid-to-wait/`, chạy server từ thư mục cha rồi mở `http://localhost:8000/paid-to-wait/`. Tất cả đường dẫn asset đều tương đối, không có base URL hoặc history routing.
+Mở `http://localhost:8000` để truy cập.
